@@ -5,7 +5,7 @@ const app = express();
 //route handler
 app.get("/", (req, res) => {
 	//app - express server
-	res.send("hi there"); //get - route for https req
+	res.send("bye there"); //get - route for https req
 }); // '/' - watch for req in /
 
 //run the server
