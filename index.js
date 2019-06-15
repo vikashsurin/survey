@@ -1,12 +1,26 @@
 const express = require("express"); //common js module only in - node
+const mongoose = require("mongoose");
+const cookieSession = require("cookie-session");
+const passport = require("passport");
+require("./models/User");
+require("./services/passport");
+
+const keys = require("./config/keys");
+mongoose.connect(keys.mongoURL);
 
 const app = express();
 
-//route handler
-app.get("/", (req, res) => {
-	//app - express server
-	res.send("bye there"); //get - route for https req
-}); // '/' - watch for req in /
+app.use(
+	cookieSession({
+		maxAge: 30 * 24 * 60 * 60 * 1000,
+		keys: [keys.cookieKey],
+	})
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+require("./routes/authRoutes")(app);
 
 //run the server
 const PORT = process.env.PORT || 5000; //ability to inject env variables dynamically

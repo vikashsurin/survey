@@ -1,6 +1,11 @@
 {
 	"dependencies": {
-		"express": "^4.17.1"
+		"cookie-session": "^1.3.3",
+		"express": "^4.17.1",
+		"mongoose": "^5.5.12",
+		"nodemon": "^1.19.1",
+		"passport": "^0.4.0",
+		"passport-google-oauth20": "^2.0.0"
 	},
 	"name": "server-1",
 	"version": "1.0.0",
@@ -10,7 +15,8 @@
 		"npm": "6.7.0"
 	},
 	"scripts": {
-		"start": "node index.js"
+		"start": "node index.js",
+		"dev": "nodemon index.js"
 	},
 	"license": "MIT"
 }
