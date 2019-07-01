@@ -8,11 +8,18 @@ module.exports = (app) => {
 		})
 	);
 
-	app.get("/auth/google/callback", passport.authenticate("google"));
+	app.get(
+		"/auth/google/callback",
+		passport.authenticate("google"),
+		(req, res) => {
+			res.redirect("/surveys");
+		}
+	);
 
 	app.get("/api/logout", (req, res) => {
 		req.logout();
-		res.send(req.user);
+		// res.send(req.user);
+		res.redirect("/");
 	});
 
 	app.get("/api/current_user", (req, res) => {
@@ -20,4 +27,3 @@ module.exports = (app) => {
 		// res.send(req.session);
 	});
 };
-//mongodb+srv://password:<password>@emails-prod-thezg.mongodb.net/test?retryWrites=true&w=majority
